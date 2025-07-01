@@ -1,0 +1,21 @@
+DOMAINS
+	Input = string.
+PREDICATES
+	nondeterm respond(Input)
+	nondeterm run
+	nondeterm chatLoop
+	nondeterm processInput(Input)
+CLAUSES
+	run():-write("Welcome! Type your message (type 'bye' to exit)."), nl,chatLoop().
+	chatLoop() :-write("> "),readln(Input),processInput(Input).
+	
+	processInput("bye") :-respond("bye"),write("Chat ended."),nl.
+	processInput(Input) :-respond(Input),chatLoop().
+	
+	
+	respond("hello") :-write("Hi! How can I assist you today?"), nl.
+	respond("how are you") :-write("I'm just a bunch of code, but I'm running smoothly!"), nl.
+	respond("bye") :-write("Goodbye! Have a great day."), nl.
+	respond(_) :-write("Sorry, I didn't understand that."), nl.
+GOAL
+	run.
